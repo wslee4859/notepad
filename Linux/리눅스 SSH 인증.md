@@ -1,3 +1,50 @@
+# docker ssh 작업시  
+docker compose 할때 volumn 을 .ssh 경로로 지정
+```
+  volumes:
+    # - .:/opt/airflow
+    - ./logs:/opt/airflow/logs
+    - ./plugins:/opt/airflow/plugins
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /home/lotte/lcaf_v4/infrastructure/pipeline:/opt/airflow/dags
+    - /home/lotte/.ssh:/home/airflow/.ssh
+
+```
+
+* local .ssh 폴더의 권한 변경이 필요  
+
+
+
+
+# ssh conn 함수
+
+load_system_host_keys 지정 필수
+
+```
+class sftp_adaptor():
+    # SFTP 
+    def sftp_conn(HOST, PORT, USER, PASSWORD=''):
+        SFTP_HOST = HOST
+        SFTP_PORT = PORT
+        SFTP_USER = USER
+        SFTP_PASSWORD = PASSWORD
+
+        
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.load_system_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
+        #ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
+        ssh.connect(SFTP_HOST, SFTP_PORT, SFTP_USER, SFTP_PASSWORD)
+        
+        ftp = ssh.open_sftp()
+
+        return ftp
+
+```
+
+
+
+
 
 [참고] (https://velog.io/@solar/SSH-%EC%9D%B8%EC%A6%9D%ED%82%A4-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%84%9C%EB%B2%84%EC%97%90-%EB%93%B1%EB%A1%9D-%EA%B0%84%ED%8E%B8%ED%95%98%EA%B2%8C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0)
 
