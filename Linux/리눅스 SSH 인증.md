@@ -42,6 +42,13 @@ class sftp_adaptor():
 
 ```
 
+# 트러블슈팅
+
+### Bad Authorized ['public key']
+
+도커에서 바라보는 .ssh 파일내의 id_rsa, id_rsa.pub, known_hosts 의 권한을 rw-r--r-- 로 설정!
+
+
 
 
 
