@@ -51,6 +51,7 @@ class sftp_adaptor():
 
 
 
+# 참고
 
 
 [참고] (https://velog.io/@solar/SSH-%EC%9D%B8%EC%A6%9D%ED%82%A4-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%84%9C%EB%B2%84%EC%97%90-%EB%93%B1%EB%A1%9D-%EA%B0%84%ED%8E%B8%ED%95%98%EA%B2%8C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0)
