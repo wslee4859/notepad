@@ -5,7 +5,9 @@
 
 # 트러블슈팅
 
-### Expected unicode or bytes, got
+### Expected unicode or bytes, got    
+error : Expected unicode or bytes, got ['LotteChilsung_20220131_MASTER.CSV']
+
 
 case : 
 ```
