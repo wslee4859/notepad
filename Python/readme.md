@@ -4,6 +4,13 @@
 test = [re.sub(r'[^0-9]', '', x) for x in filename_name_list]
 ```
 
+### list 에서 특정 string value 만 list로 가져오기
+
+```
+filename_comp = 'LotteChilsung'
+files = [s for s in files if filename_comp in s]    
+```
+
 ### 최대값 가져오기
 ```
 # filename_name_list = list
