@@ -1,4 +1,8 @@
 # list 에서 정규식으로 숫자만 추출하는 방법
+
+숫자로된 날짜값을 가져와서 가장 최근 날짜데이터를 가져오는 방안
+
+
 ```
 # filename_name_list = list
 test = [re.sub(r'[^0-9]', '', x) for x in filename_name_list]
