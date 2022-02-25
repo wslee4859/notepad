@@ -2,6 +2,35 @@
 
 https://gooopy.tistory.com/92
 
+> index 설정 
+```
+test = dataframe.set_index(column, drop = True, append=False, inplace=False) 
+```
+* drop 파라미터는 기존컬럼을 index로 넣을 때, 기존 컬럼을 말 그대로 버리는지 
+* append 파라미터는 기존 인덱스에 내가 원하는 컬럼까지 추가해서 인덱스를 만들지
+* inplace 파라미터는 원본 데이터에 덮어씌울지 
+
+> index 내용을 list 로 가져오기
+```
+ list = dataframe.index
+```
+
+
+### Pandas Dataframe 분할
+https://www.delftstack.com/ko/howto/python-pandas/split-pandas-dataframe/
+
+
+
+# list 중복제거
+
+1. 중복 list 를 set -> list
+```
+index_date = test.index
+index_set = set(index_date)
+list_date = list(index_set)
+list_date
+```
+
 
 
 # 정렬 Sort
