@@ -1,3 +1,15 @@
+# 정렬 Sort
+
+https://rfriend.tistory.com/281
+
+1. DataFrame 정렬 : DataFrame.sort_values()
+3. Tuple 정렬 : sorted(tuple, key)
+4. List 정렬 : list.sort(), sorted(list)
+
+
+
+
+
 # 숫자로된 날짜값을 가져와서 가장 최근 날짜데이터를 가져오는 방안
 
 ### list 에서 정규식으로 숫자만 추출하는 방법
