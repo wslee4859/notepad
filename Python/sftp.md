@@ -1,5 +1,14 @@
+
 # 참고  
 [함수 참고] : (https://docs.paramiko.org/en/stable/api/sftp.html)
+
+
+# 인증 .ssh
+* docker로 .ssh 파일 cp  
+https://hello-bryan.tistory.com/163  
+```
+docker cp /home/lotte/.ssh tljh-dev:/home/jupyter-wslee4859/.ssh
+```
 
 
 
