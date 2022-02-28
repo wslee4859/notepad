@@ -94,7 +94,8 @@ sys.path.append("모듈절대경로")
 ```
 2. PYTHONPATH 환경 변수 사용하기  
 ```bash
-set PYTHONPATH=[절대경로]
+ # vi ~/.bash_profile
+      PYTHONPATH=$PHTHONPATH:/usr/lib/python3.7/lib-dynload
 ```
 
 
