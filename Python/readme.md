@@ -85,12 +85,16 @@ print(matching)
 https://velog.io/@bungouk6829/Python-%EC%9D%98-%EB%AA%A8%EB%93%88%EA%B3%BC-%ED%8C%A8%ED%82%A4%EC%A7%80-sys
 
 ### (모듈을 저장한 디렉터리) 사용하기   
-https://wikidocs.net/29
-
+https://wikidocs.net/29  
+1. sys.path.append(모듈을 저장한 디렉터리) 사용하기  
 ```python
 import sys
 sys.path  #모듈이 저장되어 있는 경로가 있는지 확인
 sys.path.append("모듈절대경로")    
+```
+2. PYTHONPATH 환경 변수 사용하기  
+```bash
+set PYTHONPATH=[절대경로]
 ```
 
 
