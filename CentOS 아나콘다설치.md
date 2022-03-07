@@ -1,3 +1,43 @@
+# conda docker packages 설치 시 NotFoundError
+ 
+ * docker-py 로 설치
+
+```shell
+# docker 관련된 패키지 검색
+conda search docker
+
+conda install docker-py
+
+```
+
+python dag 실행시 docker module 을 못 읽어올 때     
+docker 모듈 설치 에러 문구
+
+```shell
+
+Collecting package metadata (current_repodata.json): done
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): done
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - docker
+
+Current channels:
+
+  - https://conda.anaconda.org/conda-forge/linux-64
+  - https://conda.anaconda.org/conda-forge/noarch
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+  
+```
+
 # Anaconda 설치
 
 
