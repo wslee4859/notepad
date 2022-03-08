@@ -98,6 +98,14 @@ sys.path.append("모듈절대경로")
       PYTHONPATH=$PHTHONPATH:/usr/lib/python3.7/lib-dynload
 ```
 
+# pip install 내용 전달  
+```shell
+pip freeze > requirements.txt
+```
+받는쪽에서 설치   
+```shell
+pip install -r requirements.txt
+```
 
 
 
