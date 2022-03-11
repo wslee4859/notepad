@@ -1,3 +1,9 @@
+# 파티션 조회
+
+```
+show partition partition_test;
+```
+
 # 파티션 추가
 ```sql
 
