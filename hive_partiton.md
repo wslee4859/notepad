@@ -4,7 +4,7 @@
 # 파티션 조회
 
 ```
-show partition partition_test;
+show partition [table명];
 ```
 
 # 파티션 테이블 생성
