@@ -51,7 +51,11 @@ https://rfriend.tistory.com/281
 
 ```
 # filename_name_list = list
+# re.sub 를 사용해서 숫자가 아닌 것들 '' 로 모두 치환
 test = [re.sub(r'[^0-9]', '', x) for x in filename_name_list]
+
+# 뽑아내는 숫자를 특정 자릿수로 고정 (예 : 8자리) 
+test = [re.sub(r'[^0-9]', '', x)[:8] for x in filename_name_list]
 ```
 
 ### list 에서 특정 string value 만 list로 가져오기
