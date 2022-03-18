@@ -1,3 +1,16 @@
+# DataFrame 중복찾기
+
+* dataframe.duplicated([column명], keep = False) 
+
+```python
+df_0103 = pd.read_csv(sftp.open('LotteChilsung_20220103_DATA.CSV', mode="r", bufsize=-1), sep='\t', header=None)  
+dup = df_0103_m.duplicated([0], keep=False)
+df_dup = pd.concat([df_0103_m, dup], axis = 1)
+df_dup.rename(columns = {0 : 'dup'}, inplace = True)
+
+```
+
+
 # DataFrame index
 
 https://gooopy.tistory.com/92
