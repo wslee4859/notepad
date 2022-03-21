@@ -1,6 +1,17 @@
 # DataFrame 중복찾기
 
+[문서](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html)
+
 * dataframe.duplicated([column명], keep = False) 
+
+> * Index.duplicated  
+>Equivalent method on index.
+> * Series.duplicated  
+>Equivalent method on Series.
+> * Series.drop_duplicates  
+>Remove duplicate values from Series.
+> * DataFrame.drop_duplicates  
+>Remove duplicate values from DataFrame.
 
 ```python
 df_0103 = pd.read_csv(sftp.open('LotteChilsung_20220103_DATA.CSV', mode="r", bufsize=-1), sep='\t', header=None)  
