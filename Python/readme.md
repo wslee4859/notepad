@@ -1,6 +1,22 @@
-# DataFrame 중복찾기
+# Dataframe Series 의 True 값만 가져오기
+
+* loc[series, :]
+
+``` python 
+# 중복값 찾아서 
+dup = df.duplicated([0], keep = False)
+# 중복값만 추출
+df_dup = df.loc[dup, :]
+```
+
+
+# DataFrame 중복
 
 [문서](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html)
+
+keep='first' 이면 중복 행 중 첫번째 행만 False, 나머지 행은 True.  
+keep='last' 이면 중복 행 중 마지막 행만 False, 나머지 행은 False.  
+keep=False 이면 중복 행 모두 True를 반환.  
 
 * dataframe.duplicated([column명], keep = False) 
 
@@ -12,6 +28,23 @@
 >Remove duplicate values from Series.
 > * DataFrame.drop_duplicates  
 >Remove duplicate values from DataFrame.
+
+### 중복제거 
+* drop_duplicates([column명], keep = False)
+* False 는 모든 중복 제거 
+
+```python 
+master_2021 = master_2021.drop_duplicates([0], keep = False)
+```
+
+### 중복값만 뽑아내기
+```python 
+# 중복값 찾아서 
+dup = df.duplicated([0], keep = False)
+# 중복값만 추출
+df_dup = df.loc[dup, :]
+```
+
 
 ```python
 df_0103 = pd.read_csv(sftp.open('LotteChilsung_20220103_DATA.CSV', mode="r", bufsize=-1), sep='\t', header=None)  
