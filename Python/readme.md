@@ -1,3 +1,9 @@
+
+# Dataframe rename
+
+* dataframe.rename(columns = {0:'BARCODE'})
+
+
 # Dataframe Series 의 True 값만 가져오기
 
 * loc[series, :]
