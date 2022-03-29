@@ -1,3 +1,6 @@
+# pip install
+[관련사이트](https://archmond.net/archives/10976)
+
 # 트러블슈팅
 
 ### cmd 에서 python 실행 시 windows store 실행되는 현상
