@@ -35,6 +35,13 @@ keep=False 이면 중복 행 모두 True를 반환.
 > * DataFrame.drop_duplicates  
 >Remove duplicate values from DataFrame.
 
+### 중복 아닌값 가져오기 
+```python 
+date_list = df['SALES_DATE'].unique()
+date_list_sort = sorted(date_list)
+```
+
+
 ### 중복제거 
 * drop_duplicates([column명], keep = False)
 * False 는 모든 중복 제거 
@@ -68,6 +75,9 @@ https://gooopy.tistory.com/92
 > index 설정 
 ```
 test = dataframe.set_index(column, drop = True, append=False, inplace=False) 
+
+# index 지우기 
+test = dataframe.reset_index(column)
 ```
 * drop 파라미터는 기존컬럼을 index로 넣을 때, 기존 컬럼을 말 그대로 버리는지 
 * append 파라미터는 기존 인덱스에 내가 원하는 컬럼까지 추가해서 인덱스를 만들지
@@ -77,6 +87,9 @@ test = dataframe.set_index(column, drop = True, append=False, inplace=False)
 ```
  list = dataframe.index
 ```
+
+
+
 
 
 ### Pandas Dataframe 분할
