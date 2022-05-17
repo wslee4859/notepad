@@ -1,4 +1,27 @@
 
+# Query Table 필드명으로 Dataframe column 명 설정
+
+cur.description 사용
+
+```python
+conn = hive.Connection(host='10.120.4.100', port=10000, username='hive', database='ods')
+cur = conn.cursor()
+cur.execute(query)
+result = cur.fetchall()
+columns = cur.description
+
+cur.close()
+conn.close()
+
+column_list = []
+for i in range(0, len(columns)):
+    column_list.append(columns[int(i)][0])
+df = pd.DataFrame(result, columns=column_list)
+
+```
+
+
+
 # Dataframe rename
 
 * dataframe.rename(columns = {0:'BARCODE'})
