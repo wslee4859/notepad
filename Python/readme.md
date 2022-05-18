@@ -13,11 +13,16 @@ columns = cur.description
 cur.close()
 conn.close()
 
+# 1. for문 사용 방법
 column_list = []
 for i in range(0, len(columns)):
     column_list.append(columns[int(i)][0])
 df = pd.DataFrame(result, columns=column_list)
 
+# 2. numpy 사용 방법
+import numpy as np
+columns_name = np.array(columns).T[0]
+df = pd.DataFrame(result, columns=columns_name)
 ```
 
 
