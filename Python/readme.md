@@ -1,3 +1,7 @@
+# Count
+df['_type'].value_counts()
+
+
 
 # Query Table 필드명으로 Dataframe column 명 설정
 
