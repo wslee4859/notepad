@@ -1,4 +1,39 @@
-# Count
+# String Format
+* str.format
+
+
+```python
+test = 'Hello {name}. count: {count}'
+test.format(name='Bob', count=5)
+# 'Hello Bob. count: 5'
+
+test = 'Hello {1}. count: {0}'
+test.format(10, 'Jim')
+# 'Hello Jim. count: 10'
+```
+* 이게 더 좋음 f-string    
+```python
+name = 'Bob'
+test = f'Hello {name}'
+print(test)
+# Hello Bob
+
+
+a = 2
+b = 3
+test = f'sum: {a+b}'
+print(test)
+# sum: 5
+
+
+test = f'Hi {name}'
+name = 'Bob'
+print(test)
+# Hi Bob
+```
+
+
+# DataFrame Value Count
 df['_type'].value_counts()
 
 
