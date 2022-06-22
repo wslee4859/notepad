@@ -1,3 +1,19 @@
+# Merge
+
+### Merge 할 때 You are trying to merge on object and int64 columns 오류나는 경우  
+두 DataFrame 간의 Dtype 이 일치하지 않기 때문에 발생  
+Tip.   데이터 가져올 때 dtype 선언
+```python
+# hdfs T Master read 
+hdfs = hdfs_adaptor.hdfs_conn()
+with hdfs.read(hdfs_path + hdfs_filename , encoding = 'utf-8') as data:
+    df_T_PRODUCT_hdfs = pd.read_csv(data, header = 0, delimiter = '', engine = 'python', dtype = object)
+    
+data.close()
+```
+
+
+
 # DataFrame 변수명을 loop로 받아서 처리
 
 [참고]
