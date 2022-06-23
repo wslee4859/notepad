@@ -3,6 +3,9 @@
   데이터프레임 컬럼 타입 정보 들
 * DataFrame.shape  
   데이터프레임 row, columns 수
+* DataFrame Value Count  
+  df['_type'].value_counts()
+
 
 # Merge
 1. df3 = df1.merge(df2, on = ken, how = 'left')
@@ -100,8 +103,6 @@ print(test)
 ```
 
 
-# DataFrame Value Count
-df['_type'].value_counts()
 
 
 
@@ -135,7 +136,13 @@ df = pd.DataFrame(result, columns=columns_name)
 
 # Dataframe rename
 
-* dataframe.rename(columns = {0:'BARCODE'})
+* dataframe.rename(columns = {0:'BARCODE'})  
+
+### 동일한 컬럼의 DataFrame Columns 명으로 넣기
+```python 
+df2.columns = df1.columns
+```
+
 
 
 # Dataframe Series 의 True 값만 가져오기
