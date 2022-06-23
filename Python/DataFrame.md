@@ -1,3 +1,9 @@
+# Dataframe 정보 
+* DataFrame.info()  
+  데이터프레임 컬럼 타입 정보 들
+* DataFrame.shape  
+  데이터프레임 row, columns 수
+
 # Merge
 
 ### Merge 할 때 You are trying to merge on object and int64 columns 오류나는 경우  
