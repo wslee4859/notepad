@@ -5,6 +5,8 @@
   데이터프레임 row, columns 수
 
 # Merge
+1. df3 = df1.merge(df2, on = ken, how = 'left')
+2. df3 = pd.merge(df1, df2, on = key, how = 'left')
 
 ### Merge 할 때 You are trying to merge on object and int64 columns 오류나는 경우  
 두 DataFrame 간의 Dtype 이 일치하지 않기 때문에 발생  
