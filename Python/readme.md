@@ -194,7 +194,7 @@ master_2021 = master_2021.drop_duplicates([0], keep = False)
 ### 중복값만 뽑아내기
 ```python 
 # 중복값 찾아서 
-dup = df.duplicated([0], keep = False)
+dup = df.duplicated([column], keep = False)
 # 중복값만 추출
 df_dup = df.loc[dup, :]
 ```
