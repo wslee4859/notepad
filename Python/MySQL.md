@@ -60,7 +60,7 @@ for i in range(1):
     start_time = time.time()    
     for j, row in df_product_split[i].iterrows():            
         cur.execute(sql, tuple(row))
-        conn.commit()
+        conn.commit()     # commit 해야 insert 가 됨.
     end_time = time.time()
     print("행 소요시간 : ")
     print(str(datetime.timedelta(seconds=end_time - start_time)).split("."))
