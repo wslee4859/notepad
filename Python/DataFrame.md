@@ -1,3 +1,10 @@
+# DataFrame Null 처리 
+```python
+# NaN -> None 처리 (MySql Insert 용)
+df_t_store = df_t_store.where(pd.notnull(df_t_store), None)
+```
+
+
 # Dataframe 정보 
 * DataFrame.info()  
   데이터프레임 컬럼 타입 정보 들
