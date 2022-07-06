@@ -1,3 +1,13 @@
+# Exception 
+### 발생오류 확인
+```python 
+try : 
+...
+except Exception as e:
+  print(e)
+```
+### 
+
 # Dataframe 정보 
 * DataFrame.info()  
   데이터프레임 컬럼 타입 정보 들
