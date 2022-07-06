@@ -43,6 +43,10 @@ https://velog.io/@paori/python-%EB%8F%99%EC%A0%81-%EB%B3%80%EC%88%98-%EC%9E%90%E
 
 https://blog.naver.com/nomadgee/220857820094
 
+```python
+globals()['df_{}'.format(sql[0])] = pd.DataFrame(result, columns=columns_name)
+```
+
 Example
 ```python
 
