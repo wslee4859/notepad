@@ -1,3 +1,12 @@
+# Window local 소스에서 no module named 라고 표시되는 경우  
+윈도우에 모듈 설치
+
+1. 터미널 (VScode)  
+2. c: 로 이동
+3. pip install [모듈]
+
+
+
 # pip install
 [관련사이트](https://archmond.net/archives/10976)
 
