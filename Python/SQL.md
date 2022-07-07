@@ -42,6 +42,38 @@ print(str(datetime.timedelta(seconds=total_end_time - total_start_time)).split("
 ```
 
 ### row 한 건씩 INSERT
+
+executemany 를 사용할 경우 좀더 대용량 가능 (execute 대신)
+
+[참고](https://pynative.com/python-mysql-update-data/)
+```python 
+chunksize = 100000
+for sql in list_upd_t_query:
+    start_time = time.time()
+    try:
+        conn = mysqlserver_pos_adaptor.mysqlserver_pos_conn()
+        cur = conn.cursor()        
+        df_size = len(globals()['df_t_{}'.format(sql[0])])        
+        print('df_t_{} , split : {}'.format(sql[0],df_size))
+        if df_size > chunksize:
+            split = int(df_size/chunksize)            
+            globals()['df_t_{}_split'.format(sql[0])]  = np.array_split(globals()['df_t_{}'.format(sql[0])], split)
+            for i in range(split):            
+                for j, row in globals()['df_t_{}_split'.format(sql[0])][i].iterrows():                    
+                    cur.executemany(sql[1], tuple(row))
+                    conn.commit()
+        else:
+            for i, row in globals()['df_t_{}'.format(sql[0])].iterrows():                    
+                cur.executemany(sql[1], tuple(row))
+                conn.commit()  
+        cur.close()
+        conn.close()        
+    except Exception as e:  
+        print(e)
+    end_time = time.time()
+    print('총소요시간 : {} '.format(str(datetime.timedelta(seconds=end_time - start_time)).split(".")))
+'''
+
 ```python 
 sql = '''INSERT INTO msfa.d_product_temp2
 (product_id, product_no, vendor_cd, barc, category1_cd, category2_cd, category3_cd, category4_cd, category5_cd, category6_cd, category7_cd, pkg_nm, volume, sec_cd)
