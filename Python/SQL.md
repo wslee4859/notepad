@@ -41,9 +41,28 @@ print("전체소요시간 : ")
 print(str(datetime.timedelta(seconds=total_end_time - total_start_time)).split("."))
 ```
 
-### row 한 건씩 INSERT
+### executemany "not enough arguments for format string" 에러 
+> 원인1.   
+> '%s' 파라미터 갯수가 모자를 경우 
+
+
+> 원인2.   
+> tuple 일 경우 에러 발생
+> 아래 예시로 
+> (username) 은 튜플이고, 데이터를 하나만 가지고 있기 때문에 (username, ) 로 표기하거나, [username] 또는 username 으로 표기
+```
+# 예시
+cursor.execute('SELECT * FROM users WHERE username = %s', (username))
+
+# 아래처럼 [  ] 감싸준다
+cur.executemany(sql[1], [tuple(row)])
+
+```
+
+### row 한 건씩 QUERY ( INSERT ) 
 
 executemany 를 사용할 경우 좀더 대용량 가능 (execute 대신)
+
 
 [참고](https://pynative.com/python-mysql-update-data/)
 ```python 
@@ -60,11 +79,11 @@ for sql in list_upd_t_query:
             globals()['df_t_{}_split'.format(sql[0])]  = np.array_split(globals()['df_t_{}'.format(sql[0])], split)
             for i in range(split):            
                 for j, row in globals()['df_t_{}_split'.format(sql[0])][i].iterrows():                    
-                    cur.executemany(sql[1], tuple(row))
+                    cur.executemany(sql[1], [tuple(row)])
                     conn.commit()
         else:
             for i, row in globals()['df_t_{}'.format(sql[0])].iterrows():                    
-                cur.executemany(sql[1], tuple(row))
+                cur.executemany(sql[1], [tuple(row)])
                 conn.commit()  
         cur.close()
         conn.close()        
