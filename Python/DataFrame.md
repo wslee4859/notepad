@@ -1,3 +1,8 @@
+# DataFrame 특정 열에 해당되는 값 가져오기 
+```python 
+df.loc[df['channel_cd'] == '10']
+```
+
 # DataFrame Null 처리 
 ```python
 # NaN -> None 처리 (MySql Insert 용)
