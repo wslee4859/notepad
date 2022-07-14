@@ -74,3 +74,133 @@ for sql in list_sql:
     columns_name = np.array(columns).T[0]
     globals()['df_{}'.format(sql[0])] = pd.DataFrame(result, columns=columns_name)
 ```
+
+
+
+# Query Table 필드명으로 Dataframe column 명 설정
+
+cur.description 사용
+
+```python
+conn = hive.Connection(host='10.120.4.100', port=10000, username='hive', database='ods')
+cur = conn.cursor()
+cur.execute(query)
+result = cur.fetchall()
+columns = cur.description
+
+cur.close()
+conn.close()
+
+# 1. for문 사용 방법
+column_list = []
+for i in range(0, len(columns)):
+    column_list.append(columns[int(i)][0])
+df = pd.DataFrame(result, columns=column_list)
+
+# 2. numpy 사용 방법
+import numpy as np
+columns_name = np.array(columns).T[0]
+df = pd.DataFrame(result, columns=columns_name)
+```
+
+
+
+# Dataframe rename
+
+* dataframe.rename(columns = {0:'BARCODE'})  
+
+### 동일한 컬럼의 DataFrame Columns 명으로 넣기
+```python 
+df2.columns = df1.columns
+```
+
+
+
+# Dataframe Series 의 True 값만 가져오기
+
+* loc[series, :]
+
+``` python 
+# 중복값 찾아서 
+dup = df.duplicated([0], keep = False)
+# 중복값만 추출
+df_dup = df.loc[dup, :]
+```
+
+
+# DataFrame 중복
+
+[문서](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html)
+
+keep='first' 이면 중복 행 중 첫번째 행만 False, 나머지 행은 True.  
+keep='last' 이면 중복 행 중 마지막 행만 False, 나머지 행은 False.  
+keep=False 이면 중복 행 모두 True를 반환.  
+
+* dataframe.duplicated([column명], keep = False) 
+
+> * Index.duplicated  
+>Equivalent method on index.
+> * Series.duplicated  
+>Equivalent method on Series.
+> * Series.drop_duplicates  
+>Remove duplicate values from Series.
+> * DataFrame.drop_duplicates  
+>Remove duplicate values from DataFrame.
+
+### 중복 아닌값 가져오기 
+```python 
+date_list = df['SALES_DATE'].unique()
+date_list_sort = sorted(date_list)
+```
+
+
+### 중복제거 
+* drop_duplicates([column명], keep = False)
+* False 는 모든 중복 제거 
+
+```python 
+master_2021 = master_2021.drop_duplicates([0], keep = False)
+```
+
+### 중복값만 뽑아내기
+```python 
+# 중복값 찾아서 
+dup = df.duplicated([column], keep = False)
+# 중복값만 추출
+df_dup = df.loc[dup, :]
+```
+
+
+```python
+df_0103 = pd.read_csv(sftp.open('LotteChilsung_20220103_DATA.CSV', mode="r", bufsize=-1), sep='\t', header=None)  
+dup = df_0103_m.duplicated([0], keep=False)
+df_dup = pd.concat([df_0103_m, dup], axis = 1)
+df_dup.rename(columns = {0 : 'dup'}, inplace = True)
+
+```
+
+
+# DataFrame index
+
+https://gooopy.tistory.com/92
+
+> index 설정 
+```
+test = dataframe.set_index(column, drop = True, append=False, inplace=False) 
+
+# index 지우기 
+test = dataframe.reset_index(column)
+```
+* drop 파라미터는 기존컬럼을 index로 넣을 때, 기존 컬럼을 말 그대로 버리는지 
+* append 파라미터는 기존 인덱스에 내가 원하는 컬럼까지 추가해서 인덱스를 만들지
+* inplace 파라미터는 원본 데이터에 덮어씌울지 
+
+> index 내용을 list 로 가져오기
+```
+ list = dataframe.index
+```
+
+
+
+### Pandas Dataframe 분할
+https://www.delftstack.com/ko/howto/python-pandas/split-pandas-dataframe/
