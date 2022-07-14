@@ -1,6 +1,6 @@
 # DataFrame 특정 열에 해당되는 값 가져오기 
 ```python 
-df_rdb_store_merge.loc[df_rdb_store_merge['channel_cd'] == '10']
+df.loc[df['channel_cd'] == '10']
 ```
 
 # Exception 
