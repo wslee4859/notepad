@@ -2,7 +2,11 @@
 
 # DataFrame 특정 열에 해당되는 값 가져오기 
 ```python 
+#1
 df.loc[df['channel_cd'] == '10']
+
+#2
+df[df['row_no']==9999]
 ```
 
 # DataFrame Null 처리 
