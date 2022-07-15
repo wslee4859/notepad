@@ -1,3 +1,5 @@
+
+
 # DataFrame 특정 열에 해당되는 값 가져오기 
 ```python 
 df.loc[df['channel_cd'] == '10']
@@ -7,6 +9,12 @@ df.loc[df['channel_cd'] == '10']
 ```python
 # NaN -> None 처리 (MySql Insert 용)
 df_t_store = df_t_store.where(pd.notnull(df_t_store), None)
+```
+
+### DataFrame  컬럼 별 null 갯수 확인
+> 각 Columns 별로 null 갯수가 display
+```
+np.sum(pd.isnull(df))
 ```
 
 
