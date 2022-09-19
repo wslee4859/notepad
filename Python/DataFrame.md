@@ -113,7 +113,13 @@ df = pd.DataFrame(result, columns=column_list)
 import numpy as np
 columns_name = np.array(columns).T[0]
 df = pd.DataFrame(result, columns=columns_name)
+
+#. 3
+columnNames = [column[0] for column in cursor.description]
+## DataFrame
+return pd.DataFrame(cursor.fetchall(), columns=columnNames)
 ```
+
 
 
 
