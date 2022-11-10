@@ -1,3 +1,26 @@
+## 데이터베이스 테이블 사이즈, ROW 건 수 확인
+
+### 데이터베이스 ROW Count 확인
+```
+SELECT
+    table_name,
+    table_rows
+FROM
+    information_schema.tables
+WHERE table_schema = 'lcsposdb'
+ORDER BY table_name;
+```
+### 데이터베이스 테이블 사이즈 확인
+```
+SELECT table_name AS 'TableName',
+                 ROUND(SUM(data_length+index_length)/(1024*1024), 2) AS 'All(MB)',
+                 ROUND(data_length/(1024*1024), 2) AS 'Data(MB)',
+                 ROUND(index_length/(1024*1024), 2) AS 'Index(MB)'
+FROM information_schema.tables
+GROUP BY table_name
+ORDER BY data_length DESC; 
+```
+
 ## My SQL Stored procedure 에서 변수명으로 객체 이름 받기
 
 MySQL에서 Stored procedure를 이용해 테이블명, 필드명 등을 인자로 받아 활용하는 방법입니다.
