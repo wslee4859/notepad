@@ -11,6 +11,21 @@ WHERE table_schema = 'lcsposdb'
 ORDER BY table_name;
 ```
 ### 데이터베이스 테이블 사이즈 확인
+데이터베이스별 용량 (Database Size) 조회
+```
+SELECT table_schema AS 'DatabaseName',
+                ROUND(SUM(data_length+index_length)/1024/1024, 1) AS 'Size(MB)'
+FROM information_schema.tables
+GROUP BY table_schema
+ORDER BY 2 DESC;
+```
+전체 용량 (Total Size) 조회
+```
+SELECT ROUND(SUM(data_length+index_length)/1024/1024, 1) AS 'Used(MB)',
+                 ROUND(SUM(data_free)/1024/1024, 1) AS 'Free(MB)'
+FROM information_schema.tables;
+```
+테이블별 용량 (Table Size) 조회
 ```
 SELECT table_name AS 'TableName',
                  ROUND(SUM(data_length+index_length)/(1024*1024), 2) AS 'All(MB)',
