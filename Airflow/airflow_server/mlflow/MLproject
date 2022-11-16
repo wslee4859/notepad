@@ -1,8 +1,0 @@
-name: test
-
-docker_env:
-    image: mlflow
-
-entry_points:
-    main:
-        command: "python finance_ml_final.py"
