@@ -1,0 +1,1 @@
+Powershell.exe -executionpolicy remotesigned -File D:\PowerShell_Script\WebDiskCheck.ps1
