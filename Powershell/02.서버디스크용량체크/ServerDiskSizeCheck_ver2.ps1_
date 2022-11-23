@@ -1,0 +1,815 @@
+﻿
+
+#$disk = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+
+#Write-Host ("{0}GB total" -f [math]::truncate($disk.Size / 1GB))
+#Write-Host ("{0}GB free" -f [math]::truncate($disk.FreeSpace / 1GB))
+
+
+
+# disk 용량 값 선언
+$Web1diskC = Get-WmiObject -ComputerName lcsekw3web01 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Web1diskD = Get-WmiObject -ComputerName lcsekw3web01 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+$Web2diskC = Get-WmiObject -ComputerName lcsekw3web02 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Web2diskD = Get-WmiObject -ComputerName lcsekw3web02 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+$Web3diskC = Get-WmiObject -ComputerName lcsekw3web03 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Web3diskD = Get-WmiObject -ComputerName lcsekw3web03 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+
+$DB1diskC = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$DB1diskE = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='E:'" | Select-Object Size, FreeSpace
+$DB1diskF = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='F:'" | Select-Object Size, FreeSpace
+$DB1diskG = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='G:'" | Select-Object Size, FreeSpace
+$DB1diskH = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='H:'" | Select-Object Size, FreeSpace
+$DB1diskI = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='I:'" | Select-Object Size, FreeSpace
+$DB1diskJ = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='J:'" | Select-Object Size, FreeSpace
+$DB1diskK = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='K:'" | Select-Object Size, FreeSpace
+$DB1diskL = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='L:'" | Select-Object Size, FreeSpace
+$DB1diskQ = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='Q:'" | Select-Object Size, FreeSpace
+$DB1diskR = Get-WmiObject -ComputerName lcsekw3db01 win32_logicaldisk  -Filter "DeviceID='R:'" | Select-Object Size, FreeSpace
+
+$DB2diskC = Get-WmiObject -ComputerName lcsekw3db02 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$DB2diskZ = Get-WmiObject -ComputerName lcsekw3db02 win32_logicaldisk  -Filter "DeviceID='Z:'" | Select-Object Size, FreeSpace
+$DB2diskM = Get-WmiObject -ComputerName lcsekw3db02 win32_logicaldisk  -Filter "DeviceID='M:'" | Select-Object Size, FreeSpace
+$DB2diskN = Get-WmiObject -ComputerName lcsekw3db02 win32_logicaldisk  -Filter "DeviceID='N:'" | Select-Object Size, FreeSpace
+$DB2diskO = Get-WmiObject -ComputerName lcsekw3db02 win32_logicaldisk  -Filter "DeviceID='O:'" | Select-Object Size, FreeSpace
+$DB2diskP = Get-WmiObject -ComputerName lcsekw3db02 win32_logicaldisk  -Filter "DeviceID='P:'" | Select-Object Size, FreeSpace
+
+$Exch1diskC = Get-WmiObject -ComputerName lcsekw3exch01 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Exch1diskD = Get-WmiObject -ComputerName lcsekw3exch01 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+$Exch2diskC = Get-WmiObject -ComputerName lcsekw3exch02 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Exch2diskD = Get-WmiObject -ComputerName lcsekw3exch02 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+$Exch3diskC = Get-WmiObject -ComputerName lcsekw3exch03 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Exch3diskD = Get-WmiObject -ComputerName lcsekw3exch03 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+$Exch4diskC = Get-WmiObject -ComputerName lcsekw3exch04 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$Exch4diskD = Get-WmiObject -ComputerName lcsekw3exch04 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+
+#Lync 메신저 서버
+#$LE1diskC = Get-WmiObject -ComputerName lcsekw3le01 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+#$LE2diskC = Get-WmiObject -ComputerName lcsekw3le02 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+# lcsekw3le 서버는 도메인조인 안되어 있어서 접속이 안됨.
+
+$LF1diskC = Get-WmiObject -ComputerName lcsekw3lf01 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$LF2diskC = Get-WmiObject -ComputerName lcsekw3lf02 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$LF3diskC = Get-WmiObject -ComputerName lcsekw3lf03 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+
+$App1diskC = Get-WmiObject -ComputerName lcsekw3app01 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$App1diskD = Get-WmiObject -ComputerName lcsekw3app01 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+
+$App2diskC = Get-WmiObject -ComputerName lcsekw3app02 win32_logicaldisk  -Filter "DeviceID='C:'" | Select-Object Size, FreeSpace
+$App2diskD = Get-WmiObject -ComputerName lcsekw3app02 win32_logicaldisk  -Filter "DeviceID='D:'" | Select-Object Size, FreeSpace
+
+#표시 
+"1번 DB C드라이브"
+Write-Host ("{0}GB total" -f [math]::truncate($DB1diskQ.Size / 1MB))
+Write-Host ("{0}GB free" -f [math]::truncate($DB1diskQ.FreeSpace / 1GB))
+
+
+$Web1diskC_Size = [math]::truncate($Web1diskC.Size / 1GB) 
+$Web1diskC_Free = [math]::truncate($Web1diskC.FreeSpace / 1GB)
+$Web1diskC_dis = [int]$Web1diskC_Size - [int]$Web1diskC_Free
+$Web1diskD_Size = [math]::truncate($Web1diskD.Size / 1GB) 
+$Web1diskD_Free = [math]::truncate($Web1diskD.FreeSpace / 1GB)
+$Web1diskD_dis = [int]$Web1diskD_Size - [int]$Web1diskD_Free
+
+$Web2diskC_Size = [math]::truncate($Web2diskC.Size / 1GB) 
+$Web2diskC_Free = [math]::truncate($Web2diskC.FreeSpace / 1GB)
+$Web2diskC_dis = [int]$Web2diskC_Size - [int]$Web2diskC_Free
+$Web2diskD_Size = [math]::truncate($Web2diskD.Size / 1GB) 
+$Web2diskD_Free = [math]::truncate($Web2diskD.FreeSpace / 1GB)
+$Web2diskD_dis = [int]$Web2diskD_Size - [int]$Web2diskD_Free
+
+$Web3diskC_Size = [math]::truncate($Web3diskC.Size / 1GB) 
+$Web3diskC_Free = [math]::truncate($Web3diskC.FreeSpace / 1GB)
+$Web3diskC_dis = [int]$Web3diskC_Size - [int]$Web3diskC_Free
+$Web3diskD_Size = [math]::truncate($Web3diskD.Size / 1GB)
+$Web3diskD_Free = [math]::truncate($Web3diskD.FreeSpace / 1GB)
+$Web3diskD_dis = [int]$Web3diskD_Size - [int]$Web3diskD_Free
+
+$DB1diskC_Size = [math]::truncate($DB1diskC.Size / 1GB) 
+$DB1diskC_Free = [math]::truncate($DB1diskC.FreeSpace / 1GB)
+$DB1diskC_dis = [int]$DB1diskC_Size - [int]$DB1diskC_Free
+$DB1diskE_Size = [math]::truncate($DB1diskE.Size / 1GB) 
+$DB1diskE_Free = [math]::truncate($DB1diskE.FreeSpace / 1GB)
+$DB1diskE_dis = [int]$DB1diskE_Size - [int]$DB1diskE_Free
+$DB1diskF_Size = [math]::truncate($DB1diskF.Size / 1GB) 
+$DB1diskF_Free = [math]::truncate($DB1diskF.FreeSpace / 1GB)
+$DB1diskF_dis = [int]$DB1diskF_Size - [int]$DB1diskF_Free
+$DB1diskG_Size = [math]::truncate($DB1diskG.Size / 1GB) 
+$DB1diskG_Free = [math]::truncate($DB1diskG.FreeSpace / 1GB)
+$DB1diskG_dis = [int]$DB1diskG_Size - [int]$DB1diskG_Free
+$DB1diskG_Size = [math]::truncate($DB1diskG.Size / 1GB) 
+$DB1diskG_Free = [math]::truncate($DB1diskG.FreeSpace / 1GB)
+$DB1diskG_dis = [int]$DB1diskG_Size - [int]$DB1diskG_Free
+$DB1diskH_Size = [math]::truncate($DB1diskH.Size / 1GB) 
+$DB1diskH_Free = [math]::truncate($DB1diskH.FreeSpace / 1GB)
+$DB1diskH_dis = [int]$DB1diskH_Size - [int]$DB1diskH_Free
+$DB1diskI_Size = [math]::truncate($DB1diskI.Size / 1GB) 
+$DB1diskI_Free = [math]::truncate($DB1diskI.FreeSpace / 1GB)
+$DB1diskI_dis = [int]$DB1diskI_Size - [int]$DB1diskI_Free
+$DB1diskJ_Size = [math]::truncate($DB1diskJ.Size / 1GB) 
+$DB1diskJ_Free = [math]::truncate($DB1diskJ.FreeSpace / 1GB)
+$DB1diskJ_dis = [int]$DB1diskJ_Size - [int]$DB1diskJ_Free
+$DB1diskK_Size = [math]::truncate($DB1diskK.Size / 1GB) 
+$DB1diskK_Free = [math]::truncate($DB1diskK.FreeSpace / 1GB)
+$DB1diskK_dis = [int]$DB1diskK_Size - [int]$DB1diskK_Free
+$DB1diskL_Size = [math]::truncate($DB1diskL.Size / 1GB) 
+$DB1diskL_Free = [math]::truncate($DB1diskL.FreeSpace / 1GB)
+$DB1diskL_dis = [int]$DB1diskL_Size - [int]$DB1diskL_Free
+$DB1diskQ_Size = [math]::truncate($DB1diskQ.Size / 1MB ) 
+$DB1diskQ_Free = [math]::truncate($DB1diskQ.FreeSpace / 1MB )
+$DB1diskQ_dis = [int]$DB1diskQ_Size - [int]$DB1diskQ_Free
+$DB1diskR_Size = [math]::truncate($DB1diskR.Size / 1MB ) 
+$DB1diskR_Free = [math]::truncate($DB1diskR.FreeSpace / 1MB )
+$DB1diskR_dis = [int]$DB1diskR_Size - [int]$DB1diskR_Free
+
+$DB2diskC_Size = [math]::truncate($DB2diskC.Size / 1GB ) 
+$DB2diskC_Free = [math]::truncate($DB2diskC.FreeSpace / 1GB )
+$DB2diskC_dis = [int]$DB2diskC_Size - [int]$DB2diskC_Free
+$DB2diskZ_Size = [math]::truncate($DB2diskZ.Size / 1GB ) 
+$DB2diskZ_Free = [math]::truncate($DB2diskZ.FreeSpace / 1GB )
+$DB2diskZ_dis = [int]$DB2diskZ_Size - [int]$DB2diskZ_Free
+$DB2diskM_Size = [math]::truncate($DB2diskM.Size / 1GB ) 
+$DB2diskM_Free = [math]::truncate($DB2diskM.FreeSpace / 1GB )
+$DB2diskM_dis = [int]$DB2diskM_Size - [int]$DB2diskM_Free
+$DB2diskN_Size = [math]::truncate($DB2diskN.Size / 1GB ) 
+$DB2diskN_Free = [math]::truncate($DB2diskN.FreeSpace / 1GB )
+$DB2diskN_dis = [int]$DB2diskN_Size - [int]$DB2diskN_Free
+$DB2diskO_Size = [math]::truncate($DB2diskO.Size / 1GB ) 
+$DB2diskO_Free = [math]::truncate($DB2diskO.FreeSpace / 1GB )
+$DB2diskO_dis = [int]$DB2diskO_Size - [int]$DB2diskO_Free
+$DB2diskP_Size = [math]::truncate($DB2diskP.Size / 1GB ) 
+$DB2diskP_Free = [math]::truncate($DB2diskP.FreeSpace / 1GB )
+$DB2diskP_dis = [int]$DB2diskP_Size - [int]$DB2diskP_Free
+
+
+$Exch1diskC_Size = [math]::truncate($Exch1diskC.Size / 1GB) 
+$Exch1diskC_Free = [math]::truncate($Exch1diskC.FreeSpace / 1GB)
+$Exch1diskC_dis = [int]$Exch1diskC_Size - [int]$Exch1diskC_Free
+$Exch1diskD_Size = [math]::truncate($Exch1diskD.Size / 1GB) 
+$Exch1diskD_Free = [math]::truncate($Exch1diskD.FreeSpace / 1GB)
+$Exch1diskD_dis = [int]$Exch1diskD_Size - [int]$Exch1diskD_Free
+
+$Exch2diskC_Size = [math]::truncate($Exch2diskC.Size / 1GB) 
+$Exch2diskC_Free = [math]::truncate($Exch2diskC.FreeSpace / 1GB)
+$Exch2diskC_dis = [int]$Exch2diskC_Size - [int]$Exch2diskC_Free
+$Exch2diskD_Size = [math]::truncate($Exch2diskD.Size / 1GB) 
+$Exch2diskD_Free = [math]::truncate($Exch2diskD.FreeSpace / 1GB)
+$Exch2diskD_dis = [int]$Exch2diskD_Size - [int]$Exch2diskD_Free
+
+$Exch3diskC_Size = [math]::truncate($Exch3diskC.Size / 1GB) 
+$Exch3diskC_Free = [math]::truncate($Exch3diskC.FreeSpace / 1GB)
+$Exch3diskC_dis = [int]$Exch3diskC_Size - [int]$Exch3diskC_Free
+$Exch3diskD_Size = [math]::truncate($Exch3diskD.Size / 1GB) 
+$Exch3diskD_Free = [math]::truncate($Exch3diskD.FreeSpace / 1GB)
+$Exch3diskD_dis = [int]$Exch3diskD_Size - [int]$Exch3diskD_Free
+
+$Exch4diskC_Size = [math]::truncate($Exch4diskC.Size / 1GB) 
+$Exch4diskC_Free = [math]::truncate($Exch4diskC.FreeSpace / 1GB)
+$Exch4diskC_dis = [int]$Exch4diskC_Size - [int]$Exch4diskC_Free
+$Exch4diskD_Size = [math]::truncate($Exch4diskD.Size / 1GB) 
+$Exch4diskD_Free = [math]::truncate($Exch4diskD.FreeSpace / 1GB)
+$Exch4diskD_dis = [int]$Exch4diskD_Size - [int]$Exch4diskD_Free
+
+$LF1diskC_Size = [math]::truncate($LF1diskC.Size / 1GB) 
+$LF1diskC_Free = [math]::truncate($LF1diskC.FreeSpace / 1GB)
+$LF1diskC_dis = [int]$LF1diskC_Size - [int]$LF1diskC_Free
+
+$LF2diskC_Size = [math]::truncate($LF2diskC.Size / 1GB) 
+$LF2diskC_Free = [math]::truncate($LF2diskC.FreeSpace / 1GB)
+$LF2diskC_dis = [int]$LF2diskC_Size - [int]$LF2diskC_Free
+
+$LF3diskC_Size = [math]::truncate($LF3diskC.Size / 1GB) 
+$LF3diskC_Free = [math]::truncate($LF3diskC.FreeSpace / 1GB)
+$LF3diskC_dis = [int]$LF3diskC_Size - [int]$LF3diskC_Free
+
+$App1diskC_Size = [math]::truncate($App1diskC.Size / 1GB) 
+$App1diskC_Free = [math]::truncate($App1diskC.FreeSpace / 1GB)
+$App1diskC_dis = [int]$App1diskC_Size - [int]$App1diskC_Free
+
+$App1diskD_Size = [math]::truncate($App1diskD.Size / 1GB) 
+$App1diskD_Free = [math]::truncate($App1diskD.FreeSpace / 1GB)
+$App1diskD_dis = [int]$App1diskD_Size - [int]$App1diskD_Free
+
+$App2diskC_Size = [math]::truncate($App2diskC.Size / 1GB) 
+$App2diskC_Free = [math]::truncate($App2diskC.FreeSpace / 1GB)
+$App2diskC_dis = [int]$App2diskC_Size - [int]$App2diskC_Free
+
+$App2diskD_Size = [math]::truncate($App2diskD.Size / 1GB) 
+$App2diskD_Free = [math]::truncate($App2diskD.FreeSpace / 1GB)
+$App2diskD_dis = [int]$App2diskD_Size - [int]$App2diskD_Free
+
+
+#디스크 임계치 
+$diskLimit = [int]10
+$LimitRate = [single]0.2
+
+#메일 내용
+$Emailbody = "<table border='1'>"
+$Emailbody += "<tr> <td colspan='5'> <font size='3' color='green' ><b>그룹웨어 웹서버 임계치 10GB </b></font> </td>"
+$Emailbody += "<tr> <td> <font size='3' color='green' ><b>서버명</b></font> </td>"
+$Emailbody += "<td> 드라이브 </td>"
+$Emailbody += "<td> 총 용량 </td>"
+$Emailbody += "<td> 사용 중 </td>"
+$Emailbody += "<td width='30px'> 사용 가능 </td>"
+$Emailbody += "</tr>"
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3WEB01</b><br/>10.120.6.51</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Web1diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Web1diskC_dis GB</font> </td>"
+if([int]$Web1diskC_Free -lt $diskLimit)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Web1diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Web1diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Web1diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Web1diskD_dis GB</font> </td>"
+if([int]$Web1diskC_Free -lt $diskLimit)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Web1diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Web1diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#2번 웹 서버 
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3WEB02</b><br/>10.120.6.52</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Web2diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Web2diskC_dis GB</font> </td>"
+if([int]$Web2diskC_Free -lt $diskLimit)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Web2diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Web2diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Web2diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Web2diskD_dis GB</font> </td>"
+if([int]$Web2diskD_Free -lt $diskLimit)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Web2diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Web2diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+
+#3번 웹 서버 
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3WEB03</b><br/>10.120.6.53</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Web3diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Web3diskC_dis GB</font> </td>"
+if([int]$Web3diskC_Free -lt $diskLimit)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Web3diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Web3diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Web3diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Web3diskD_dis GB</font> </td>"
+if([int]$Web3diskD_Free -lt $diskLimit)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Web3diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Web3diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "</table>"
+$Emailbody += "<br>"
+$Emailbody += "<br>"
+# 웹서버 디스크체크 html 종료
+
+# DB서버 디스크체크 html 시작
+$Emailbody += "<table border='1'>"
+$Emailbody += "<tr> <td colspan='5'> <font size='3' color='green' ><b>그룹웨어 DB서버 임계치 20% </b></font> </td>"
+$Emailbody += "<tr> <td> <font size='3' color='green' ><b>서버명</b></font> </td>"
+$Emailbody += "<td> 드라이브 </td>"
+$Emailbody += "<td> 총 용량 </td>"
+$Emailbody += "<td> 사용 중 </td>"
+$Emailbody += "<td width='30px'> 사용 가능 </td>"
+$Emailbody += "</tr>"
+#DB 1번 서버 C드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='11'><b>LCSEKW3DB01</b> <br/> 10.120.6.90 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskC_dis GB</font> </td>"
+if([int]$DB1diskC_Free -lt [int]$DB1diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 E : RTC 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> E:\ (RTC) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskE_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskE_dis GB</font> </td>"
+if([int]$DB1diskE_Free -lt [int]$DB1diskE_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskE_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskE_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 F : MON 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> F:\ (MON) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskF_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskF_dis GB</font> </td>"
+if([int]$DB1diskF_Free -lt [int]$DB1diskF_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskF_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskF_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 G : RTCMONLog 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> G:\ (RTCMONLog) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskG_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskG_dis GB</font> </td>"
+if([int]$DB1diskG_Free -lt [int]$DB1diskG_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskG_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskG_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 H : APP 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> H:\ (APP) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskH_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskH_dis GB</font> </td>"
+if([int]$DB1diskH_Free -lt [int]$DB1diskH_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskH_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskH_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 I : APPLog 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> I:\ (APPLog) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskI_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskI_dis GB</font> </td>"
+if([int]$DB1diskI_Free -lt [int]$DB1diskI_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskI_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskI_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 J : Temp 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> J:\ (Temp) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskJ_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskJ_dis GB</font> </td>"
+if([int]$DB1diskJ_Free -lt [int]$DB1diskJ_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskJ_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskJ_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 K : LyncShare 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> K:\ (LyncShare) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskK_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskK_dis GB</font> </td>"
+if([int]$DB1diskK_Free -lt [int]$DB1diskK_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskK_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskK_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 L : LFile 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> L:\ (LFile) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskL_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskL_dis GB</font> </td>"
+if([int]$DB1diskL_Free -lt [int]$DB1diskL_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskL_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskL_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 Q : Quroum 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> Q:\ (Quroum) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskQ_Size MB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskQ_dis MB</font> </td>"
+if([int]$DB1diskQ_Free -lt [int]$DB1diskQ_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskQ_Free MB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskQ_Free MB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 1번 서버 R : MSDTC 드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td> R:\ (MSDTC) </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskR_Size MB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB1diskR_dis MB</font> </td>"
+if([int]$DB1diskR_Free -lt [int]$DB1diskR_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB1diskR_Free MB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB1diskR_Free MB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+# DB 1번서버 종료
+
+# DB 2번서버 디스크체크 html 시작
+#DB 2번 서버 C드라이브
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='6'><b>LCSEKW3DB02</b> <br/> 10.120.6.91 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskC_dis GB</font> </td>"
+if([int]$DB2diskC_Free -lt [int]$DB2diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB2diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB2diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 2번 서버 M : EWF 드라이브
+$Emailbody += "<td> M:\ (EWF) </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskM_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskM_dis GB</font> </td>"
+if([int]$DB2diskM_Free -lt [int]$DB2diskM_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB2diskM_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB2diskM_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 2번 서버 N : EWFLog
+$Emailbody += "<td> N:\ (EWFLog) </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskN_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskN_dis GB</font> </td>"
+if([int]$DB2diskN_Free -lt [int]$DB2diskN_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB2diskN_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB2diskN_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 2번 서버 O : Temp
+$Emailbody += "<td> O:\ (Temp) </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskO_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskO_dis GB</font> </td>"
+if([int]$DB2diskO_Free -lt [int]$DB2diskO_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB2diskO_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB2diskO_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 2번 서버 P : File
+$Emailbody += "<td> P:\ (File) </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskP_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskP_dis GB</font> </td>"
+if([int]$DB2diskP_Free -lt [int]$DB2diskP_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB2diskP_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB2diskP_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#DB 2번 서버 Z : 새볼륨
+$Emailbody += "<td> Z:\ (새볼륨) </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskZ_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$DB2diskZ_dis GB</font> </td>"
+if([int]$DB2diskZ_Free -lt [int]$DB2diskZ_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$DB2diskZ_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$DB2diskZ_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "</table>"
+$Emailbody += "<br/>"
+$Emailbody += "<br/>"
+# DB 2번서버 디스크체크 끝
+
+# Exchage 서버 디스크 체크 시작
+$Emailbody += "<table border='1'>"
+$Emailbody += "<tr> <td colspan='5'> <font size='3' color='green' ><b>Exchange 서버 임계치 20%  </b></font> </td>"
+$Emailbody += "<tr> <td> <font size='3' color='green' ><b>서버명</b></font> </td>"
+$Emailbody += "<td> 드라이브 </td>"
+$Emailbody += "<td> 총 용량 </td>"
+$Emailbody += "<td> 사용 중 </td>"
+$Emailbody += "<td width='30px'> 사용 가능 </td>"
+$Emailbody += "</tr>"
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3EXCH01</b><br/>10.120.6.31</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch1diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch1diskC_dis GB</font> </td>"
+if([int]$Exch1diskC_Free -lt [int]$Exch1diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch1diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch1diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch1diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch1diskD_dis GB</font> </td>"
+if([int]$Exch1diskD_Free -lt [int]$Exch1diskD_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch1diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch1diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+#2번 Exch 서버 
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3EXCH02</b><br/>10.120.6.32</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch2diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch2diskC_dis GB</font> </td>"
+if([int]$Exch2diskC_Free -lt [int]$Exch1diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch2diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch2diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch2diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch2diskD_dis GB</font> </td>"
+if([int]$Exch2diskD_Free -lt [int]$Exch2diskD_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch2diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch2diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+
+#3번 Exch 서버 
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3EXCH03</b><br/>10.120.6.34</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch3diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch3diskC_dis GB</font> </td>"
+if([int]$Exch3diskC_Free -lt [int]$Exch3diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch3diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch3diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch3diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch3diskD_dis GB</font> </td>"
+if([int]$Exch3diskD_Free -lt [int]$Exch3diskD_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch3diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch3diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+
+# 4번 Exch 서버
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3EXCH04</b><br/>10.120.6.35</td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch4diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch4diskC_dis GB</font> </td>"
+if([int]$Exch4diskC_Free -lt [int]$Exch4diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch4diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch4diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$Exch4diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$Exch4diskD_dis GB</font> </td>"
+if([int]$Exch4diskD_Free -lt [int]$Exch4diskD_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$Exch4diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$Exch4diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "</table>"
+$Emailbody += "<br>"
+$Emailbody += "<br>"
+# Exchange 서버 디스크 체크 html 종료
+
+
+# Lync 서버 디스크체크 html 시작
+#LF 01 ~03 시작
+$Emailbody += "<table border='1'>"
+$Emailbody += "<tr> <td colspan='5'> <font size='3' color='green' ><b>Lync Front-End 서버 임계치 20% </b></font> </td>"
+$Emailbody += "<tr> <td> <font size='3' color='green' ><b>서버명</b></font> </td>"
+$Emailbody += "<td> 드라이브 </td>"
+$Emailbody += "<td> 총 용량 </td>"
+$Emailbody += "<td> 사용 중 </td>"
+$Emailbody += "<td width='30px'> 사용 가능 </td>"
+$Emailbody += "</tr>"
+$Emailbody += "<tr>"
+$Emailbody += "<td><b>LCSEKW3LF01</b> <br/> 10.120.6.41 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$LF1diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$LF1diskC_dis GB</font> </td>"
+if([int]$LF1diskC_Free -lt [int]$LF1diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$LF1diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$LF1diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td><b>LCSEKW3LF02 </b> <br/> 10.120.6.42 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$LF2diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$LF2diskC_dis GB</font> </td>"
+if([int]$LF2diskC_Free -lt [int]$LF2diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$LF2diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$LF2diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td><b>LCSEKW3LF03 </b> <br/> 10.120.6.43 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$LF3diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$LF3diskC_dis GB</font> </td>"
+if([int]$LF3diskC_Free -lt [int]$LF3diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$LF3diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$LF3diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "</table>"
+$Emailbody += "<br>"
+$Emailbody += "<br>"
+#LF 01 ~03 
+# Lync 서버 디스크 체크 html 종료
+
+# App 서버 디스크 체
+$Emailbody += "<table border='1'>"
+$Emailbody += "<tr> <td colspan='5'> <font size='3' color='green' ><b>App 서버 임계치 20% </b></font> </td>"
+$Emailbody += "<tr> <td> <font size='3' color='green' ><b>서버명</b></font> </td>"
+$Emailbody += "<td> 드라이브 </td>"
+$Emailbody += "<td> 총 용량 </td>"
+$Emailbody += "<td> 사용 중 </td>"
+$Emailbody += "<td width='30px'> 사용 가능 </td>"
+$Emailbody += "</tr>"
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3APP01</b> <br/> 10.120.6.21 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$App1diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$App1diskC_dis GB</font> </td>"
+if([int]$App1diskC_Free -lt [int]$App1diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$App1diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$App1diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$App1diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$App1diskD_dis GB</font> </td>"
+if([int]$App1diskD_Free -lt [int]$App1diskD_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$App1diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$App1diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<tr>"
+$Emailbody += "<td rowspan='2'><b>LCSEKW3APP02 </b> <br/> 10.120.6.22 </td>"
+$Emailbody += "<td> C:\ </td>"
+$Emailbody += "<td> <font color=blue>$App2diskC_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$App2diskC_dis GB</font> </td>"
+if([int]$App2diskC_Free -lt [int]$App2diskC_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$App2diskC_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$App2diskC_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+$Emailbody += "<td> D:\ </td>"
+$Emailbody += "<td> <font color=blue>$App2diskD_Size GB</font> </td>"
+$Emailbody += "<td> <font color=blue>$App2diskD_dis GB</font> </td>"
+if([int]$App2diskD_Free -lt [int]$App2diskD_Size*$LimitRate)    # 10보다 작을 경우 
+{
+    $Emailbody += "<td><b><font color=red>$App2diskD_Free GB</font></b></td>"               
+    $Emailbody += "</tr>"
+}
+else{
+    $Emailbody += "<td><b> <font color=blue>$App2diskD_Free GB</font></b></td>"
+    $Emailbody += "</tr>"
+}
+ $Emailbody += "</table>"
+
+
+#메일 보내는 부분
+    $EmailSubject = [string]"그룹웨어 서버 디스크 체크"
+    $EmailFrom = "wslee4859@lottechilsung.co.kr" 
+    $EmailTo = "wslee4859@lottechilsung.co.kr,eugene0502@lottechilsung.co.kr,hancutnews@lottechilsung.co.kr"
+    #$EmailTo = "wslee4859@lottechilsung.co.kr"
+    $SMTPServer = "owa.lottechilsung.co.kr" 
+    $mailer = new-object Net.Mail.SMTPclient($smtpserver)
+    $msg = new-object Net.Mail.MailMessage($EmailFrom,$EmailTo,$EmailSubject,$Emailbody)
+    $msg.IsBodyHTML = $true
+    $mailer.send($msg)
