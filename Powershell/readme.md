@@ -4,6 +4,7 @@
 
 
 ## CSV 파일 Control
+[참고] (https://tkim.info/ko/powershell/p048-powershell%EC%97%90%EC%84%9C-csv%EB%A5%BC-%EB%8B%A4%EB%A3%A8%EB%8A%94-%EB%B0%A9%EB%B2%95-%EC%A0%95%EB%A6%AC/)
 ```powershell
 Export-Csv -Path "\\lcsekw3exch01\file\eugene1.csv" -Encoding UTF8
 ConvertTo-CSV > "C:\file\aa.csv"  
