@@ -1,3 +1,16 @@
+# 특정 문자열이 포함된 VIEW, SP 찾기
+```sql
+-- ex : HRSQLSERVER 가 포함된 VIEW, SP 찾기
+select distinct a.name
+from sysobjects a with (nolock)
+join syscomments b with (nolock) on a.id = b.id
+where b.text like '%' + 'HRSQLSERVER' + '%'
+order by a.name
+
+
+```
+
+
 # 저장프로시저 느림 현상
 
 ### CASE : 서버 이관 이후 저장프로시저가 느려지는 현상
