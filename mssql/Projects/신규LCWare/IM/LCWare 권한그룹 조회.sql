@@ -1,0 +1,1 @@
+select * from [dbo].[org_group] where parent_id in ( '8212' , '8332') order by parent_id

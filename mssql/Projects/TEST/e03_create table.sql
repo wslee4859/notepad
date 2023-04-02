@@ -1,0 +1,21 @@
+USE TestDB
+BEGIN TRAN
+DECLARE @pChar char(2)
+
+DROP TABLE dbo.Test3_Child_이완상
+CREATE TABLE dbo.Test3_Child_이완상
+(	
+	ChildNm char(8),
+	CNT100 INT,
+	CNT500 INT,
+	CNT1000 INT,
+	CNT5000 INT,
+	CNT10000 INT
+)
+
+INSERT INTO dbo.Test3_Child_이완상 SELECT * FROM dbo.Test3_Child
+SELECT * FROM dbo.Test3_Child_이완상
+CASE WHEN @pChar = 'D' THEN SELECT *, (CNT100*100 + CNT500*500 + CNT1000*1000 + CNT5000*5000 + CNT10000*10000) AS [총 금액] FROM dbo.Test3_Child_이완상
+END
+SELECT @@TRANCOUNT
+--ROLLBACK TRAN 

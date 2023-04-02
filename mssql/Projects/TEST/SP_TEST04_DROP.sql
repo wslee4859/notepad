@@ -1,0 +1,15 @@
+/*************************************  테이블 삭제 ********************************************************/
+ALTER PROCEDURE SP_TEST04_DROP
+AS
+DROP TABLE E4
+DROP TABLE S1
+DROP TABLE S2
+DROP TABLE M1
+DROP TABLE M2
+DROP TABLE SA_M
+DROP TABLE SA_W
+DROP TABLE A_M
+DROP TABLE T1
+DROP TABLE T2
+DROP TABLE T3
+DROP TABLE T4
