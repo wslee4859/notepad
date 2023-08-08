@@ -15,11 +15,11 @@ cd C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Binn
 sqlcmd -E
 ```
 
-![img]("./img/sql-quri_3.jpg")
+![img]("sql-quri_3.jpg")
 
-<img src="https://xinet.kr/wp-content/uploads/2016/09/sql-quri_3.jpg">
+<img src="./img/sql-quri_3.jpg">
 
-https://xinet.kr/wp-content/uploads/2016/09/sql-quri_3.jpg
+
 
 
 
